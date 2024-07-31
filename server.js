@@ -1,6 +1,7 @@
-const client = require("./config/db");
+
 const express = require("express");
-const bodyparser = require("body-parser");
+const mongoose = require('mongoose');
+
 const authRoutes = require("./routes/userRoute");
 const logger = require("./logger/logger");
 const chatRouter = require('./routes/sendMessagesRoute'); 
@@ -21,18 +22,21 @@ app.use('/api/auth', authRoutes);
 
 app.use('/api/chat',chatRouter);
 
-  const startServer = async () => {
-    try {
-      await client;
-      console.log('Connected to MongoDB');
-    } catch (error) {
-      console.error('Database connection error:', error);
-      process.exit(1);
-    }
-  };
+const startServer = async () => {
+  try {
+    await mongoose.connect(config.mongodbUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Database connection error:', error);
+    process.exit(1);
+  }
+};
 
-  startServer();
-  return app;
+startServer();
+return app;
 };
 
 

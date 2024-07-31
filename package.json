@@ -1,6 +1,6 @@
 {
-  "name": "zabackend",
-  "version": "1.0.0",
+  "name": "za-chat",
+  "version": "1.0.1",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
@@ -33,5 +33,9 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "lerna": "^8.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishnu5104/za-chat.git"
   }
 }
